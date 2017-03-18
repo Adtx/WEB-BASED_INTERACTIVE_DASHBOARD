@@ -1,0 +1,18 @@
+.dashboard {
+  width: 100%;
+}
+
+.dashboard /deep/ .widget {
+  background-color: darkgrey;
+}
+
+.widget .close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+.handle {
+  cursor: move;
+}
