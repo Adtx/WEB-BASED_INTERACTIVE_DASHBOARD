@@ -1,9 +1,7 @@
 <shared-header> </shared-header>
 <shared-sidebar></shared-sidebar>
 
-<div [ngGrid]="{'resizeable': false, 'margins': [5, 10]}">
-    <div *ngFor="let box of boxes" [(ngGridItem)]="box.config">
-        <div class="title">Titulo</div>
-        <p>Coisas</p>
+<div [ngGrid]="gridConfig">
+
+
     </div>
-</div>
