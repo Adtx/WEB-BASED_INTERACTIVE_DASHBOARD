@@ -6,6 +6,7 @@ import { SidebarModule } from 'ng-sidebar';
 import { AppComponent } from './app.component';
 import {  HeaderComponent} from './shared/header/header.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { NgGridModule } from 'angular2-grid';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -17,7 +18,8 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-  SidebarModule.forRoot()
+  SidebarModule.forRoot(),
+  NgGridModule
   ],
   providers: [],
   bootstrap: [AppComponent]
