@@ -4,12 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { SidebarModule } from 'ng-sidebar';
 import { AppComponent } from './app.component';
-import {  HeaderComponent} from './shared/header/header.component';
+import { TopBarComponent } from './shared/TopBar/topbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { NgGridModule } from 'angular2-grid';
 @NgModule({
   declarations: [
-    HeaderComponent,
+    TopBarComponent,
     SidebarComponent,
     AppComponent
     

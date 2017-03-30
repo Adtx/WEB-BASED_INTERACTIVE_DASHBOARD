@@ -1,0 +1,28 @@
+.topbar {
+    left: 0px;
+    position: fixed;
+    right: 0;
+    top: 0px;
+    z-index: 999;
+}
+
+.navbar-default {
+    background-color: #36404a;
+    border-radius: 0px;
+    border: none;
+    margin-bottom: 0px;
+}
+.navbar-default {
+    background-color: #f8f8f8;
+    border-color: #e7e7e7;
+}
+@media (min-width: 768px)
+.navbar {
+    border-radius: 4px;
+}
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+}
