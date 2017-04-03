@@ -1,13 +1,31 @@
 <ng-sidebar-container>
+      <ng-sidebar
+        [(opened)]="_opened"
+        [mode]="_MODES[_modeNum]"
+        [keyClose]="_keyClose"
+        [position]="_POSITIONS[_positionNum]"
+        [dockedSize]="'50px'"
+        [autoCollapseHeight]="_autoCollapseHeight"
+        [autoCollapseWidth]="_autoCollapseWidth"
+        [closeOnClickOutside]="_closeOnClickOutside"
+        [showBackdrop]="_showBackdrop"
+        [animate]="_animate"
+        [trapFocus]="_trapFocus"
+        [autoFocus]="_autoFocus"
+        [sidebarClass]="'demo-sidebar'"
+        [ariaLabel]="'My sidebar'"
+        (onOpenStart)="_onOpenStart()"
+        (onOpened)="_onOpened()"
+        (onCloseStart)="_onCloseStart()"
+        (onClosed)="_onClosed()"
+        (onAnimationStart)="_onAnimationStart($event)"
+        (onAnimationDone)="_onAnimationDone($event)">
 
-      <!-- A sidebar -->
-      <ng-sidebar [(opened)]="_opened">
         <p>Sidebar contents</p>
-        <p>Sidebar contents</p>
-        <p>Sidebar contents</p>
+
+        <button class="demo-control" (click)="_toggleOpened()">Close sidebar</button>
+        <p><a closeSidebar>This will close the sidebar too</a></p>
+
       </ng-sidebar>
-
-      <!-- Page content -->
-      <button style="position: absolute; right: 0;" (click)="_toggleSidebar()">Toggle sidebar</button>
 
     </ng-sidebar-container>
