@@ -14,7 +14,7 @@ import { NgGridModule } from 'angular2-grid';
 
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { WidgetContainerComponent } from './dashboard/widgetContainer/widgetContainer.component';
-import { ChartComponent } from './dashboard/chart/chart.component';
+//import { ChartComponent } from './dashboard/chart/chart.component';
 import { TwitterComponent } from './dashboard/twitter/twitter.component';
 
 @NgModule({
@@ -27,9 +27,9 @@ import { TwitterComponent } from './dashboard/twitter/twitter.component';
         FooterModule,
         RouterModule.forRoot([])
     ],
-    declarations: [ AppComponent, DashboardComponent, ChartComponent, TwitterComponent, WidgetContainerComponent],
+    declarations: [ AppComponent, DashboardComponent, TwitterComponent, WidgetContainerComponent],
     providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
-    entryComponents: [ChartComponent, TwitterComponent],
+    entryComponents: [TwitterComponent],
     bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {NgGrid, NgGridItem, NgGridConfig, NgGridItemConfig, NgGridItemEvent} from 'angular2-grid';
-import { ChartComponent } from './chart/chart.component';
+//import { ChartComponent } from './chart/chart.component';
 import { TwitterComponent } from './twitter/twitter.component';
 
 interface Box {
@@ -80,7 +80,7 @@ export class DashboardComponent{
 	}
 
 	private _generateDefaultItemConfig(): NgGridItemConfig {
-		return { 'dragHandle': '.handle', 'col': 1, 'row': 1, 'sizex': 1, 'sizey': 1 };
+		return { 'dragHandle': '.handle', 'col': 1, 'row': 1, 'sizex': 50, 'sizey': 10 };
 	}
 
 	private _generateDefaultDashConfig(): NgGridItemConfig[] {

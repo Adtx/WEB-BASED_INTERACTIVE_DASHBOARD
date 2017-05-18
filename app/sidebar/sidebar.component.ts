@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output} from '@angular/core';
-import { ITEMS } from './sidebar-items.config';
+import { ITEMS, SUBITEMS } from './sidebar-items.config';
 import { MenuType } from './sidebar.metadata';
 
 @Component({
@@ -10,6 +10,8 @@ import { MenuType } from './sidebar.metadata';
 
 export class SidebarComponent implements OnInit {
     public menuItems: any[];
+    public displayChartTypes: boolean = false;
+    public subMenuItems: any[];
     isCollapsed = true;
     @Output() newWidget = new EventEmitter<Component>();
 
@@ -17,6 +19,7 @@ export class SidebarComponent implements OnInit {
 
     ngOnInit() {
         this.menuItems = ITEMS.filter(menuItem => menuItem.menuType !== MenuType.BRAND);
+        this.subMenuItems = SUBITEMS;
     }
 
     public get menuIcon(): string {
