@@ -14,7 +14,7 @@
             </a>
             <div *ngIf="displayChartTypes">
                 <ul class="nav">
-                    <li *ngFor="let subitem of subMenuItems">
+                    <li *ngFor="let subitem of subMenuItems" (click)="triggerEvent(subitem.widgetType)">
                         <a>
                             <p>{{subitem.title}}</p>
                         </a>

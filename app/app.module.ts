@@ -16,6 +16,13 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { WidgetContainerComponent } from './dashboard/widgetContainer/widgetContainer.component';
 //import { ChartComponent } from './dashboard/chart/chart.component';
 import { TwitterComponent } from './dashboard/twitter/twitter.component';
+import { BarChartComponent } from './dashboard/barChart/barChart.component';
+import { LineChartComponent } from './dashboard/LineChart/lineChart.component';
+import { DoughnutChartComponent } from './dashboard/DoughnutChart/doughnutChart.component';
+import { PieChartComponent } from './dashboard/PieChart/pieChart.component';
+import { PolarAreaChartComponent } from './dashboard/PolarAreaChart/polarAreaChart.component';
+import { RadarChartComponent } from './dashboard/RadarChart/radarChart.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
     imports:      [
@@ -25,11 +32,17 @@ import { TwitterComponent } from './dashboard/twitter/twitter.component';
         NavbarModule,
         NgGridModule,
         FooterModule,
+        ChartsModule,
         RouterModule.forRoot([])
     ],
-    declarations: [ AppComponent, DashboardComponent, TwitterComponent, WidgetContainerComponent],
+    declarations: [ AppComponent, DashboardComponent, TwitterComponent, WidgetContainerComponent,
+                    BarChartComponent, LineChartComponent, DoughnutChartComponent, PieChartComponent,
+                    PolarAreaChartComponent, RadarChartComponent
+                  ],
     providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
-    entryComponents: [TwitterComponent],
+    entryComponents: [TwitterComponent, BarChartComponent, LineChartComponent, DoughnutChartComponent,
+                      PieChartComponent, PolarAreaChartComponent, RadarChartComponent
+                     ],
     bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

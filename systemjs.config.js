@@ -25,7 +25,8 @@
       // other libraries
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-      'angular2-grid': 'node_modules/angular2-grid/bundles'
+      'angular2-grid': 'node_modules/angular2-grid/bundles',
+      "ng2-charts": "node_modules/ng2-charts"
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -36,7 +37,8 @@
       rxjs: {
         defaultExtension: 'js'
       },
-      'angular2-grid': { main: 'NgGrid.umd.min.js',  defaultExtension: 'js' }
+      'angular2-grid': { main: 'NgGrid.umd.min.js',  defaultExtension: 'js' },
+      "ng2-charts": { main: "ng2-charts.js", defaultExtension: "js" }
     }
   });
 })(this);

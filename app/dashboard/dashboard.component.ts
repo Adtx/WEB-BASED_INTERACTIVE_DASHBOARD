@@ -80,7 +80,7 @@ export class DashboardComponent{
 	}
 
 	private _generateDefaultItemConfig(): NgGridItemConfig {
-		return { 'dragHandle': '.handle', 'col': 1, 'row': 1, 'sizex': 50, 'sizey': 10 };
+		return { 'dragHandle': '.handle', 'col': 1, 'row': 1, 'sizex': 50, 'sizey': 30 };
 	}
 
 	private _generateDefaultDashConfig(): NgGridItemConfig[] {
