@@ -1,0 +1,15 @@
+<div class="main-content">
+    <div [ngGrid]="gridConfig">
+
+        <div *ngFor="let box of boxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event)"
+            (onDrag)="onDrag(i, $event)">
+            <div class="handle">Widget {{box.id}}
+                <div class="box-header-btns pull-right">
+                    <a title="Remove widget" (click)="removeWidget(i);">
+                        <i class="pe-7s-close-circle"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
