@@ -23,6 +23,7 @@ import { PieChartComponent } from './dashboard/PieChart/pieChart.component';
 import { PolarAreaChartComponent } from './dashboard/PolarAreaChart/polarAreaChart.component';
 import { RadarChartComponent } from './dashboard/RadarChart/radarChart.component';
 import { ChartsModule } from 'ng2-charts';
+import {ChartDataService} from './services/chart.data.service';
 
 @NgModule({
     imports:      [
@@ -39,7 +40,7 @@ import { ChartsModule } from 'ng2-charts';
                     BarChartComponent, LineChartComponent, DoughnutChartComponent, PieChartComponent,
                     PolarAreaChartComponent, RadarChartComponent
                   ],
-    providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
+    providers: [ChartDataService],
     entryComponents: [TwitterComponent, BarChartComponent, LineChartComponent, DoughnutChartComponent,
                       PieChartComponent, PolarAreaChartComponent, RadarChartComponent
                      ],

@@ -37,7 +37,7 @@ export class DashboardComponent{
 		'cascade': 'up',
 		'min_width': 50,
 		'min_height': 50,
-		'fix_to_grid': false,
+		'fix_to_grid': true,
 		'auto_style': true,
 		'auto_resize': false,
 		'maintain_ratio': false,

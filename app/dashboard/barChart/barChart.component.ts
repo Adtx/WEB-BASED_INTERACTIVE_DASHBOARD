@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ChartDataService} from '../../services/chart.data.service';
  
 @Component({
   moduleId: module.id,
@@ -15,9 +16,25 @@ export class BarChartComponent {
   public barChartLegend:boolean = true;
  
   public barChartData:any[] = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+    {data: [], label: 'Series A'},
+    //{data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
   ];
+  //private maxDataPoints: number = 7;
+
+  public constructor(private service: ChartDataService){
+    //this.service = new ChartDataService();
+    service.getObservableData().subscribe(newValue => {
+     // for(let i=0; i<this.lineChartData.length;i++)
+     
+        this.barChartData[0].data.push(newValue);
+        this.barChartLabels = this.barChartLabels.map((label) => {return label;}); // Sem esta linha a view so atualiza quando entra no if
+
+        if(this.barChartData[0].data.length > this.barChartLabels.length){ // Se o numero atual de pontos ja nao cabe no grafico, faz scroll
+          this.barChartData[0].data.shift();
+          this.barChartLabels = this.barChartLabels.map((label) => {return (parseInt(label)+1).toString();});
+        }
+    });
+  }
  
   // events
   public chartClicked(e:any):void {

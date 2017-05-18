@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
+import {ChartDataService} from '../../services/chart.data.service';
  
 @Component({
     moduleId: module.id,
@@ -14,6 +15,26 @@ export class PolarAreaChartComponent {
  
   public polarAreaChartType:string = 'polarArea';
  
+  public constructor(private service: ChartDataService){
+    //this.service = new ChartDataService();
+    service.getObservableData().subscribe(newValue => {
+     // for(let i=0; i<this.lineChartData.length;i++)
+     
+        //this.zone.run(() => {
+          this.polarAreaChartData.push(parseInt(newValue));
+          this.polarAreaChartData.shift();
+          this.polarAreaChartData = this.polarAreaChartData.slice(0);
+        //});
+
+        /*if(this.polarAreaChartData.length == this.doughnutChartLabels.length){
+          this.zone.run(() => {
+            this.polarAreaChartData = this.polarAreaChartData.slice(0);
+            this.polarAreaChartData.length = 0;
+          });
+        }*/
+    });
+  }
+
   // events
   public chartClicked(e:any):void {
     console.log(e);
