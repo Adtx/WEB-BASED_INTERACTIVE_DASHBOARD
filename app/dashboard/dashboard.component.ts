@@ -1,9 +1,12 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {NgGrid, NgGridItem, NgGridConfig, NgGridItemConfig, NgGridItemEvent} from 'angular2-grid';
+import { ChartComponent } from './chart/chart.component';
+import { TwitterComponent } from './twitter/twitter.component';
 
 interface Box {
     id: number;
     config: any;
+	widgetType: Component;
 }
 
 
@@ -18,7 +21,7 @@ interface Box {
 export class DashboardComponent{
     private boxes: Array<Box> = [];
 	private rgb: string = '#efefef';
-	private curNum;
+	private curNum = 1;
 	private gridConfig: NgGridConfig = <NgGridConfig>{
 		'margins': [5],
 		'draggable': true,
@@ -43,21 +46,18 @@ export class DashboardComponent{
 		'limit_to_screen': true
 	};
 	private itemPositions: Array<any> = [];
+	hello: string = 'hello\n';
+
 
 	constructor() {
-		const dashconf = this._generateDefaultDashConfig();
-		for (var i = 0; i < dashconf.length; i++) {
-			const conf = dashconf[i];
-			conf.payload = 1 + i;
-			this.boxes[i] = { id: i + 1, config: conf };
-		}
-		this.curNum = dashconf.length + 1;
 	}
 
-	addBox(): void {
+
+
+	addBox(type: Component): void {
 		const conf: NgGridItemConfig = this._generateDefaultItemConfig();
 		conf.payload = this.curNum++;
-		this.boxes.push({ id: conf.payload, config: conf });
+		this.boxes.push({ id: conf.payload, config: conf, widgetType: type});
 	}
 
 	removeWidget(index: number): void {

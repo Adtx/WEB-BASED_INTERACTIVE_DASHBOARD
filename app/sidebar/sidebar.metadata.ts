@@ -4,9 +4,10 @@ export enum MenuType {
     RIGHT
 }
 
-export interface RouteInfo {
+export interface ItemInfo {
     path: string;
     title: string;
     menuType: MenuType;
     icon: string;
+    widgetType: string;
 }

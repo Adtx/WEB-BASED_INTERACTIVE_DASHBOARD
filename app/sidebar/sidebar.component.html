@@ -7,10 +7,16 @@
             </a>
         </div>
         <ul class="nav">
-            <li *ngFor="let item of menuItems" routerLinkActive="active" (click)="triggerEvent()" >
-                <a  [routerLink]="item.path">
+            <li *ngFor="let item of menuItems" (click)="triggerEvent(item.widgetType)" >
+                <a>
                     <i class="{{item.icon}}"></i>
                     <p>{{item.title}}</p>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <i class="pe-7s-bell"></i>
+                    <p>Notificações</p>
                 </a>
             </li>
         </ul>

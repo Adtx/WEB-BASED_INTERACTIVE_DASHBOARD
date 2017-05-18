@@ -10,12 +10,15 @@ import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common'
 export class AppComponent implements OnInit{
     location: Location;
     @ViewChild('grid') dashboard;
+
     constructor(location:Location) {
         this.location = location;
     }
+
     ngOnInit(){
         $.getScript('../assets/js/light-bootstrap-dashboard.js');
     }
+
     public isMaps(path){
         var titlee = this.location.prepareExternalUrl(this.location.path());
         titlee = titlee.slice( 1 );
@@ -27,7 +30,7 @@ export class AppComponent implements OnInit{
         }
     }
 
-    private addWidget(): void {
-        this.dashboard.addBox();
+    private addWidget(widgetType: Component): void {
+        this.dashboard.addBox(widgetType);
     }
 }

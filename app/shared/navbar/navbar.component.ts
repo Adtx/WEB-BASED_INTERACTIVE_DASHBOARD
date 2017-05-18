@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTES } from '../.././sidebar/sidebar-routes.config';
+//import { ROUTES } from '../.././sidebar/sidebar-routes.config';
 import { MenuType } from '../.././sidebar/sidebar.metadata';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 
@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit{
         this.location = location;
     }
     ngOnInit(){
-        this.listTitles = ROUTES.filter(listTitle => listTitle.menuType !== MenuType.BRAND);
+        //this.listTitles = ROUTES.filter(listTitle => listTitle.menuType !== MenuType.BRAND);
     }
     getTitle(){
         var titlee = this.location.prepareExternalUrl(this.location.path());
