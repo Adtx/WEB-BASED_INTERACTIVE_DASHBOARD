@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output} from '@angular/core';
-import { ITEMS, SUBITEMS } from './sidebar-items.config';
+import { ITEMS, SUBITEMS, ROUTES } from './sidebar-items.config';
 import { MenuType } from './sidebar.metadata';
 
 @Component({
@@ -9,6 +9,9 @@ import { MenuType } from './sidebar.metadata';
 })
 
 export class SidebarComponent implements OnInit {
+   
+    public routerItems: any[];
+
     public menuItems: any[];
     public displayChartTypes: boolean = false;
     public subMenuItems: any[];
@@ -20,6 +23,8 @@ export class SidebarComponent implements OnInit {
     ngOnInit() {
         this.menuItems = ITEMS.filter(menuItem => menuItem.menuType !== MenuType.BRAND);
         this.subMenuItems = SUBITEMS;
+
+        this.routerItems = ROUTES.filter(menuItem => menuItem);
     }
 
     public get menuIcon(): string {

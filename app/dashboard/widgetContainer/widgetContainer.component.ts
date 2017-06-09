@@ -3,7 +3,7 @@ import {Component, ViewContainerRef, ViewChild, Input, ComponentRef, Type, Compo
 // Helper component to add dynamic components
 @Component({
   selector: 'widget-container',
-  template: `<div #target></div>`
+  template: `<div #target ></div>`
 })
 export class WidgetContainerComponent {
   @ViewChild('target', {read: ViewContainerRef}) target: ViewContainerRef;

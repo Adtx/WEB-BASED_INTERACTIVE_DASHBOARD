@@ -16,6 +16,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { WidgetContainerComponent } from './dashboard/widgetContainer/widgetContainer.component';
 //import { ChartComponent } from './dashboard/chart/chart.component';
 import { TwitterComponent } from './dashboard/twitter/twitter.component';
+import { ClockComponent } from './dashboard/clock/clock.component';
+
 import { BarChartComponent } from './dashboard/barChart/barChart.component';
 import { LineChartComponent } from './dashboard/LineChart/lineChart.component';
 import { DoughnutChartComponent } from './dashboard/DoughnutChart/doughnutChart.component';
@@ -25,23 +27,32 @@ import { RadarChartComponent } from './dashboard/RadarChart/radarChart.component
 import { ChartsModule } from 'ng2-charts';
 import {ChartDataService} from './services/chart.data.service';
 
+import {FormsModule} from '@angular/forms';
+
+import {LoginComponent} from'./login/login.component';
+import {HomeComponent} from'./home/home.component';
+
+import { MODULE_COMPONENTS, MODULE_ROUTES } from './dashboard/dashboard.routes';
+
 @NgModule({
     imports:      [
         BrowserModule,
+        FormsModule,
         DashboardModule,
         SidebarModule,
         NavbarModule,
         NgGridModule,
         FooterModule,
         ChartsModule,
-        RouterModule.forRoot([])
+        RouterModule.forRoot(MODULE_ROUTES)
     ],
-    declarations: [ AppComponent, DashboardComponent, TwitterComponent, WidgetContainerComponent,
+    
+    declarations: [ HomeComponent, LoginComponent, AppComponent, DashboardComponent, TwitterComponent, ClockComponent, WidgetContainerComponent,
                     BarChartComponent, LineChartComponent, DoughnutChartComponent, PieChartComponent,
                     PolarAreaChartComponent, RadarChartComponent
                   ],
     providers: [ChartDataService],
-    entryComponents: [TwitterComponent, BarChartComponent, LineChartComponent, DoughnutChartComponent,
+    entryComponents: [TwitterComponent, ClockComponent, BarChartComponent, LineChartComponent, DoughnutChartComponent,
                       PieChartComponent, PolarAreaChartComponent, RadarChartComponent
                      ],
     bootstrap:    [ AppComponent ]

@@ -2,6 +2,7 @@ import {Component, ViewEncapsulation} from '@angular/core';
 import {NgGrid, NgGridItem, NgGridConfig, NgGridItemConfig, NgGridItemEvent} from 'angular2-grid';
 //import { ChartComponent } from './chart/chart.component';
 import { TwitterComponent } from './twitter/twitter.component';
+import { ClockComponent } from './clock/clock.component';
 
 interface Box {
     id: number;
@@ -32,9 +33,9 @@ export class DashboardComponent{
 		'visible_rows': 0,
 		'min_cols': 1,
 		'min_rows': 1,
-		'col_width': 2,
+		'col_width': 1,
 		'row_height': 2,
-		'cascade': 'up',
+		'cascade': 'left',
 		'min_width': 50,
 		'min_height': 50,
 		'fix_to_grid': true,

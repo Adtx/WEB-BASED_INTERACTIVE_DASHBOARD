@@ -35,6 +35,8 @@
     "angular-in-memory-web-api": "~0.1.13",
     "angular2-chartist": "~0.10.1",
     "angular2-google-maps": "~0.16.0",
+    "angular2-grid": "^2.0.2",
+    "angular2-websocket": "^0.9.2",
     "chart.js": "^2.5.0",
     "chartist": "~0.9.8",
     "compression": "^1.6.2",

@@ -11,3 +11,11 @@ export interface ItemInfo {
     icon: string;
     widgetType: string;
 }
+
+
+export interface RouteInfo {
+    path: string;
+    title: string;
+    icon: string;
+    class: string;
+}

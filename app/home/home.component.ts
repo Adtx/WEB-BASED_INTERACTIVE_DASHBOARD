@@ -2,18 +2,34 @@ import { Component, OnInit, ViewChild} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 
-import { ITEMS, SUBITEMS, ROUTES } from './sidebar/sidebar-items.config';
-
 @Component({
-    selector: 'my-app',
-    templateUrl: 'app/app.component.html'
+    selector: 'home-cmp',
+    template: `
+        <div class="wrapper">
+    <div class="sidebar" data-color="blue" data-image="">
+        <sidebar-cmp (newWidget)="addWidget($event)"></sidebar-cmp>
+        <div class="sidebar-background" style="background-image: url(/assets/img/sidebar-4.jpg)"></div>
+    </div>
+
+<navbar-cmp  class="navbar-cmp-fixed">
+</navbar-cmp>
+
+
+    <div class="main-panel">
+        
+        <dashboard-cmp #grid></dashboard-cmp>
+        <div>
+            <footer-cmp></footer-cmp>
+        </div>
+    </div>
+</div>
+
+    `
 })
 
-export class AppComponent implements OnInit{
+export class HomeComponent implements OnInit{
     location: Location;
     @ViewChild('grid') dashboard;
-
-    public routerItems: any[];
 
     constructor(location:Location) {
         this.location = location;
@@ -21,7 +37,6 @@ export class AppComponent implements OnInit{
 
     ngOnInit(){
         $.getScript('../assets/js/light-bootstrap-dashboard.js');
-        this.routerItems = ROUTES.filter(menuItem => menuItem);
     }
 
     public isMaps(path){
