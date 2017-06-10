@@ -50,8 +50,6 @@ export class LineChartComponent {
     //this.service = new ChartDataService();
     this.service.getObservableData().subscribe(newValue => {
      // for(let i=0; i<this.lineChartData.length;i++)
-
-        console.log(typeof newValue);
      
         this.lineChartData[0].push(newValue);
         this.lineChartLabels = this.lineChartLabels.map((label) => {return label;}); // Sem esta linha a view so atualiza quando entra no if

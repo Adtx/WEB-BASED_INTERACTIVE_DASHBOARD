@@ -27,6 +27,7 @@
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
       'angular2-grid': 'node_modules/angular2-grid/bundles',
       "ng2-charts": "node_modules/ng2-charts",
+      "chart.js": "npm:chart.js/dist/chart.js",
       "angular2-websocket": "node_modules/angular2-websocket",
       'rxjs': 'npm:rxjs',
     },
