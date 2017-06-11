@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MODULE_COMPONENTS, MODULE_ROUTES } from './dashboard.routes';
+import {MODULE_ROUTES } from '../../app.routes';
 
 
 //import { BrowserModule } from '@angular/platform-browser';
@@ -10,7 +10,7 @@ import { MODULE_COMPONENTS, MODULE_ROUTES } from './dashboard.routes';
         //BrowserModule,
         //RouterModule.forChild(MODULE_ROUTES)
     ],
-    declarations: [MODULE_COMPONENTS]
+    declarations: []
 })
 
-export class DashboardModule{}
+export class GridModule{}

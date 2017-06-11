@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 
-import { ITEMS, SUBITEMS, ROUTES } from './sidebar/sidebar-items.config';
+import { ITEMS, SUBITEMS, ROUTES } from './home/sidebar/sidebar-items.config';
 
 @Component({
     selector: 'my-app',

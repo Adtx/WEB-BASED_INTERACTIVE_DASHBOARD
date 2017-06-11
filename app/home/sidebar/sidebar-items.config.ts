@@ -1,13 +1,13 @@
 import { MenuType, ItemInfo } from './sidebar.metadata';
 //import { ChartComponent } from '../dashboard/chart/chart.component';
-import { TwitterComponent } from '../dashboard/twitter/twitter.component';
-import { ClockComponent } from '../dashboard/clock/clock.component';
-import { BarChartComponent } from '../dashboard/barChart/barChart.component';
-import { LineChartComponent } from '../dashboard/LineChart/lineChart.component';
-import { DoughnutChartComponent } from '../dashboard/DoughnutChart/doughnutChart.component';
-import { PieChartComponent } from '../dashboard/PieChart/pieChart.component';
-import { PolarAreaChartComponent } from '../dashboard/PolarAreaChart/polarAreaChart.component';
-import { RadarChartComponent } from '../dashboard/RadarChart/radarChart.component';
+import { TwitterComponent } from '../grid/twitter/twitter.component';
+import { ClockComponent } from '../grid/clock/clock.component';
+import { BarChartComponent } from '../grid/barChart/barChart.component';
+import { LineChartComponent } from '../grid/LineChart/lineChart.component';
+import { DoughnutChartComponent } from '../grid/DoughnutChart/doughnutChart.component';
+import { PieChartComponent } from '../grid/PieChart/pieChart.component';
+import { PolarAreaChartComponent } from '../grid/PolarAreaChart/polarAreaChart.component';
+import { RadarChartComponent } from '../grid/RadarChart/radarChart.component';
 
 
 import {  RouteInfo } from './sidebar.metadata';

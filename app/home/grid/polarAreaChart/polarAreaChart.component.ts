@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import {ChartDataService} from '../../services/chart.data.service';
+import {ChartDataService} from '../../../services/chart.data.service';
  
 @Component({
     moduleId: module.id,

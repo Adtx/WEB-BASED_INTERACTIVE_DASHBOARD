@@ -17,7 +17,7 @@ import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common'
 
     <div class="main-panel">
         
-        <dashboard-cmp #grid></dashboard-cmp>
+        <grid-cmp #grid></grid-cmp>
         <div>
             <footer-cmp></footer-cmp>
         </div>

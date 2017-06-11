@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 //import { ROUTES } from '../.././sidebar/sidebar-routes.config';
-import { MenuType } from '../.././sidebar/sidebar.metadata';
+import { MenuType } from '../sidebar/sidebar.metadata';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 
 @Component({

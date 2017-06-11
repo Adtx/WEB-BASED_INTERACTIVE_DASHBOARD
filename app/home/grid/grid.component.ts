@@ -13,13 +13,13 @@ interface Box {
 
 @Component({
     moduleId: module.id,
-    selector: 'dashboard-cmp',
-    templateUrl: 'dashboard.component.html',
-    styleUrls: ['dashboard.component.css'],
+    selector: 'grid-cmp',
+    templateUrl: 'grid.component.html',
+    styleUrls: ['grid.component.css'],
 	encapsulation: ViewEncapsulation.None
 })
 
-export class DashboardComponent{
+export class GridComponent{
     private boxes: Array<Box> = [];
 	private rgb: string = '#efefef';
 	private curNum = 1;
