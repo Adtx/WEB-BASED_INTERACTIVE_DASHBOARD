@@ -1,3 +1,26 @@
+<span *ngIf="closeConfigWindow" style="pointer-events: none;font-size:25px; margin-left: 5px;position:absolute;top:0px;left:0px">{{title}}</span>
+<div *ngIf="!closeConfigWindow" style="position:absolute;top:0px;left:0px;width:100%;height:100%;background-color:white">
+    <div class="handle" style="background-color: gray; margin-bottom:0px;"><span style="font-size:25px; margin-left: 5px;">Novo doughnut chart</span>
+        <div class="box-header-btns pull-right">
+            <a (click)="closeConfigWindow = true">
+                <i class="pe-7s-close-circle" style="font-size:30px; margin-right:5px; margin-top:5px; "></i>
+            </a>
+        </div>
+    </div>
+    <div>
+        <form style="margin-top:10px;margin-left:5px;">
+            <div class="form-group">
+                <label >Título:</label>
+                <input class="form-control" [(ngModel)]="title" name="titulo">
+            </div>
+            <div class="form-group">
+                <label >URL do serviço de dados:</label>
+                <input #input class="form-control" placeholder="ex: ws://pcogdashboard.azurewebsites.net/">
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="connectToService(input.value)" style="position:absolute;right:5px;bottom:5px">OK</button>
+        </form>
+    </div>
+</div>
 <div style="display: block">
   <canvas baseChart width="385" height="185"
               [data]="doughnutChartData"

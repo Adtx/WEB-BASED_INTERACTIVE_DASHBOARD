@@ -549,6 +549,7 @@ input:focus {
   overflow: auto;
 }
 .main-panel .main-content {
+  position:relative;
   padding: 30px 15px;
   min-height: calc(100% - 123px);
 }

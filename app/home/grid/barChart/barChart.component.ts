@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import {ChartDataService} from '../../../services/chart.data.service';
  
 @Component({
@@ -6,7 +6,7 @@ import {ChartDataService} from '../../../services/chart.data.service';
   selector: 'barChart-cmp',
   templateUrl: 'barChart.component.html'
 })
-export class BarChartComponent {
+export class BarChartComponent implements OnDestroy{
   public barChartOptions:any = {
     scaleShowVerticalLines: false,
     responsive: true
@@ -20,10 +20,22 @@ export class BarChartComponent {
     //{data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
   ];
   //private maxDataPoints: number = 7;
+  private closeConfigWindow:boolean = false;
+  private service: ChartDataService;
+  private serviceURL: string;
+  private title: string;
 
-  public constructor(private service: ChartDataService){
-    //this.service = new ChartDataService();
-    service.getObservableData().subscribe(newValue => {
+
+  public constructor(){this.service = new ChartDataService();}
+
+
+  private connectToService(serviceURL: string){
+
+    this.closeConfigWindow = true;
+
+    this.service.connect(serviceURL);
+
+    this.service.getObservableData().subscribe(newValue => {
      // for(let i=0; i<this.lineChartData.length;i++)
      
         this.barChartData[0].data.push(newValue);
@@ -35,34 +47,15 @@ export class BarChartComponent {
         }
     });
   }
- 
-  // events
-  public chartClicked(e:any):void {
-    console.log(e);
+
+  ngOnDestroy() {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+   this.service.closeConnection(this.serviceURL);
   }
+
+// events
+public chartClicked(e:any):void {  }
  
-  public chartHovered(e:any):void {
-    console.log(e);
-  }
- 
-  public randomize():void {
-    // Only Change 3 values
-    let data = [
-      Math.round(Math.random() * 100),
-      59,
-      80,
-      (Math.random() * 100),
-      56,
-      (Math.random() * 100),
-      40];
-    let clone = JSON.parse(JSON.stringify(this.barChartData));
-    clone[0].data = data;
-    this.barChartData = clone;
-    /**
-     * (My guess), for Angular to recognize the change in the dataset
-     * it has to change the dataset variable directly,
-     * so one way around it, is to clone the data, change it and then
-     * assign it;
-     */
-  }
+public chartHovered(e:any):void {  }
 }

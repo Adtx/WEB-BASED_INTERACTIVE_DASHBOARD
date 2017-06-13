@@ -36,9 +36,9 @@ export class GridComponent{
 		'col_width': 1,
 		'row_height': 2,
 		'cascade': 'left',
-		'min_width': 50,
-		'min_height': 50,
-		'fix_to_grid': true,
+		'min_width': 20,
+		'min_height': 20,
+		'fix_to_grid': false,
 		'auto_style': true,
 		'auto_resize': false,
 		'maintain_ratio': false,
@@ -47,7 +47,6 @@ export class GridComponent{
 		'limit_to_screen': true
 	};
 	private itemPositions: Array<any> = [];
-	hello: string = 'hello\n';
 
 
 	constructor() {

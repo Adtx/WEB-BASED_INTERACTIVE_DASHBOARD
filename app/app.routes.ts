@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 
 
 export const MODULE_ROUTES: Route[] =[
-    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'index', component: AppComponent },
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },

@@ -17,12 +17,13 @@ console.log('Server listening on port 8080');
 
 wss.on('connection', (ws) => {
 	console.log('Client connected');
-	while(ws.readyState == WebSocket.OPEN){
+	while(ws.readyState === WebSocket.OPEN){
 		var randValue = Math.floor(Math.random() * (MAX - MIN)) + MIN;
 		ws.send(randValue);
 		console.log(randValue);
 		wait(1000);
 	}
+	console.log('Client disconnected');
 });
 
 /*var array = [10, 20, 30];
