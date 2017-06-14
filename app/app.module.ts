@@ -25,6 +25,7 @@ import { PolarAreaChartComponent } from './home/grid/PolarAreaChart/polarAreaCha
 import { RadarChartComponent } from './home/grid/RadarChart/radarChart.component';
 import { ChartsModule } from 'ng2-charts';
 import {ChartDataService} from './services/chart.data.service';
+import {BackendService} from './services/backend.service';
 
 import {FormsModule} from '@angular/forms';
 
@@ -36,6 +37,7 @@ import { MODULE_ROUTES } from './app.routes';
 @NgModule({
     imports:      [
         BrowserModule,
+        HttpModule,
         FormsModule,
         GridModule,
         SidebarModule,
@@ -50,7 +52,7 @@ import { MODULE_ROUTES } from './app.routes';
                     BarChartComponent, LineChartComponent, DoughnutChartComponent, PieChartComponent,
                     PolarAreaChartComponent, RadarChartComponent
                   ],
-    providers: [ChartDataService],
+    providers: [ChartDataService, BackendService],
     entryComponents: [TwitterComponent, ClockComponent, BarChartComponent, LineChartComponent, DoughnutChartComponent,
                       PieChartComponent, PolarAreaChartComponent, RadarChartComponent
                      ],

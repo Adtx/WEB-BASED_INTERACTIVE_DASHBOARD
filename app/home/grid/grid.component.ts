@@ -1,8 +1,9 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, ViewEncapsulation, Type} from '@angular/core';
 import {NgGrid, NgGridItem, NgGridConfig, NgGridItemConfig, NgGridItemEvent} from 'angular2-grid';
-//import { ChartComponent } from './chart/chart.component';
 import { TwitterComponent } from './twitter/twitter.component';
 import { ClockComponent } from './clock/clock.component';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import {BackendService} from '../../services/backend.service';
 
 interface Box {
     id: number;
@@ -20,7 +21,7 @@ interface Box {
 })
 
 export class GridComponent{
-    private boxes: Array<Box> = [];
+    public boxes: Array<Box> = [];
 	private rgb: string = '#efefef';
 	private curNum = 1;
 	private gridConfig: NgGridConfig = <NgGridConfig>{
@@ -49,15 +50,15 @@ export class GridComponent{
 	private itemPositions: Array<any> = [];
 
 
-	constructor() {
+	constructor(private http: Http, private service: BackendService) {
 	}
 
 
 
-	addBox(type: Component): void {
+	addBox(type: Type<Component>): void {
 		const conf: NgGridItemConfig = this._generateDefaultItemConfig();
 		conf.payload = this.curNum++;
-		this.boxes.push({ id: conf.payload, config: conf, widgetType: type});
+		this.boxes.push({ 'id': conf.payload, 'config': conf, 'widgetType': type});
 	}
 
 	removeWidget(index: number): void {
@@ -71,8 +72,9 @@ export class GridComponent{
 		// Do something here
 	}
 
-	onDrag(index: number, event: NgGridItemEvent): void {
-		// Do something here
+	updateItemPosition(index: number, event: NgGridItemEvent): void {
+		this.boxes[index].config.col = event.col;
+		this.boxes[index].config.row = event.row;
 	}
 
 	onResize(index: number, event: NgGridItemEvent): void {
@@ -90,4 +92,20 @@ export class GridComponent{
 		{ 'dragHandle': '.handle', 'col': 51, 'row': 1, 'sizex': 75, 'sizey': 1 },
 		{ 'dragHandle': '.handle', 'col': 83, 'row': 26, 'sizex': 1, 'sizey': 1 }];
 	}
+
+	 /*teste(){
+
+		this.service.saveUserSession(this.boxes)
+				.subscribe( res => {},
+							error => console.log(error));
+
+			let headers = new Headers({ 'Content-Type': 'application/json', 
+                                     'Accept': 'q=0.8;application/json;q=0.9' });
+        	let options = new RequestOptions({ headers: headers });
+
+			this.http.delete('http://pcogdashboard.azurewebsites.net/api/DashboardDelete/user5/dash6');
+			this.http.delete('http://pcogdashboard.azurewebsites.net/api/DashboardDelete/user5/dash7');
+			this.http.delete('http://pcogdashboard.azurewebsites.net/api/DashboardDelete/user5/dash6')
+					 .subscribe(asfd => {});
+    }*/
 }

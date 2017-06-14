@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output} from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Type} from '@angular/core';
 import { ITEMS, SUBITEMS, ROUTES } from './sidebar-items.config';
 import { MenuType } from './sidebar.metadata';
 
@@ -11,12 +11,11 @@ import { MenuType } from './sidebar.metadata';
 export class SidebarComponent implements OnInit {
    
     public routerItems: any[];
-
     public menuItems: any[];
     public displayChartTypes: boolean = false;
     public subMenuItems: any[];
     isCollapsed = true;
-    @Output() newWidget = new EventEmitter<Component>();
+    @Output() newWidget = new EventEmitter<Type<Component>>();
 
     constructor() {}
 
@@ -37,7 +36,7 @@ export class SidebarComponent implements OnInit {
         };
     }
 
-    private triggerEvent(widgetType: Component) : void {
+    private triggerEvent(widgetType: Type<Component>) : void {
         this.newWidget.emit(widgetType);
     }
 }
