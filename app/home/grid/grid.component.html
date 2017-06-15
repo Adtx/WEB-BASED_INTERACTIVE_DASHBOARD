@@ -6,7 +6,7 @@
             (onDragStop)="updateItemPosition(i, $event)" style="position:relative">
             <div class="handle" style="background-color: gray; margin-bottom:0px;"><span style="font-size:30px; margin-left: 5px;"><!--Widget {{box.id}}--></span>
                 <div class="box-header-btns pull-right">
-                    <a title="Remove widget">
+                    <a title="Remove widget" (click)="removeWidget(i);">
                         <i class="pe-7s-close-circle" style="font-size:30px; margin-right:5px; margin-top:5px; "></i>
                     </a>
                 </div>

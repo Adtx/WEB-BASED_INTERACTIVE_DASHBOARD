@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output} from '@angular/core';
 import { MenuType } from '../sidebar/sidebar.metadata';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import {SharedService} from '../../services/shared.service';
 
 @Component({
     moduleId: module.id,
@@ -11,9 +12,9 @@ import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common'
 export class NavbarComponent{
     private listTitles: any[];
     location: Location;
-    @Output() save = new EventEmitter();
+    //@Output() save = new EventEmitter();
 
-    constructor(location:Location) {
+    constructor(location:Location, public sharedService: SharedService) {
         this.location = location;
     }
 
@@ -31,7 +32,7 @@ export class NavbarComponent{
     }
 
      private triggerEvent() : void {
-        this.save.emit();
+        this.sharedService.subject.next('something');
         console.log('SAVE EVENT EMITTED');
     }
 }

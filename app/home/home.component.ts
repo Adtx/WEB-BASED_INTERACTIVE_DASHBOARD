@@ -8,7 +8,10 @@ import { DoughnutChartComponent } from './grid/DoughnutChart/doughnutChart.compo
 import { PieChartComponent } from './grid/PieChart/pieChart.component';
 import { PolarAreaChartComponent } from './grid/PolarAreaChart/polarAreaChart.component';
 import { RadarChartComponent } from './grid/RadarChart/radarChart.component';
+import { TwitterComponent } from './grid/twitter/twitter.component';
+import { ClockComponent } from './grid/clock/clock.component';
 import {BackendService} from '../services/backend.service';
+import {SharedService} from '../services/shared.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -46,30 +49,38 @@ export class HomeComponent{
         'doughnutchart': DoughnutChartComponent,
         'piechart': PieChartComponent,
         'polarareachart': PolarAreaChartComponent,
-        'radarchart': RadarChartComponent
+        'radarchart': RadarChartComponent,
+        'clock': ClockComponent,
+        'twitter': TwitterComponent
     };
 
-    constructor(private http: Http, location:Location, private service: BackendService) {
+    constructor(private http: Http, location:Location, private service: BackendService, public sharedService: SharedService) {
         this.location = location;
+        this.sharedService.subject.subscribe(value => {
+
+            this.service.saveUserSession(this.grid.boxes)
+                        .subscribe( res => {},
+                                    error => console.log(error));
+
+            console.log('SESSION SAVED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+        });
     }
 
     ngOnInit(){ // Obter do back-end a configuração do utilizador
         //$.getScript('../assets/js/light-bootstrap-dashboard.js');
 
-          /*this.http.get('http://pcogdashboard.azurewebsites.net/api/DashboardsList/user5')
+          this.http.get('http://pcogdashboard.azurewebsites.net/api/DashboardsFetch/adri/dash0')
             .map((response: Response) => <any[]>response.json())
             .subscribe(array => {
-                let widgets: any[]=array;
-                if(widgets)
-                        for(let widget of widgets){
-                            widget.widgetType = HomeComponent.stringTypeMap[widget.widgetType];
-                            this.grid.boxes.push(widget);
-                        }
-            });*/
+                for(let widget of array){
+                    widget.widgetType = HomeComponent.stringTypeMap[widget.widgetType];
+                    this.grid.boxes.push(widget);
+                }
+            });
     }
 
 
-    private saveSession(): void {
+    /*private saveSession(): void {
 
 
        console.log('SESSION SAVED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
@@ -78,7 +89,7 @@ export class HomeComponent{
 				.subscribe( res => {},
 							error => console.log(error));
         
-    }
+    }*/
     
     private addWidget(widgetType: Component): void {
         this.grid.addBox(widgetType);

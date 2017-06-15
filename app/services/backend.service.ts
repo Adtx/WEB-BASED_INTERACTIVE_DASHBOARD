@@ -5,11 +5,14 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { BarChartComponent } from '../home/grid/barChart/barChart.component';
-import { LineChartComponent } from '../home/grid/LineChart/lineChart.component';
+import { LineChartComponent } from '../home/grid/lineChart/lineChart.component';
 import { DoughnutChartComponent } from '../home/grid/DoughnutChart/doughnutChart.component';
-import { PieChartComponent } from '../home/grid/PieChart/pieChart.component';
+import { PieChartComponent } from '../home/grid/pieChart/pieChart.component';
 import { PolarAreaChartComponent } from '../home/grid/PolarAreaChart/polarAreaChart.component';
-import { RadarChartComponent } from '../home/grid/RadarChart/radarChart.component';
+import { RadarChartComponent } from '../home/grid/radarChart/radarChart.component';
+import { TwitterComponent } from '../home/grid/twitter/twitter.component';
+import { ClockComponent } from '../home/grid/clock/clock.component';
+
 
 @Injectable()
 export class BackendService {
@@ -30,14 +33,16 @@ export class BackendService {
             else if(box.widgetType === PieChartComponent) type='piechart';
             else if(box.widgetType === PolarAreaChartComponent) type='polarareachart';
             else if(box.widgetType === RadarChartComponent) type='radarchart';
+            else if(box.widgetType === TwitterComponent) type='twitter';
+            else if(box.widgetType === ClockComponent) type='clock';
 			widget = { id: box.id, config: box.config, widgetType: type};
             widgets = widgets.concat(JSON.stringify(widget)).concat(',');
         }
 		widgets = widgets.slice(0,-1).concat(']');
 
         let data = {
-            UserId:"userName",
-            DashBoardId:"dashboard1",
+            UserId:"adri",
+            DashBoardId:"dash0",
             DashboardValue: widgets
         }
 
