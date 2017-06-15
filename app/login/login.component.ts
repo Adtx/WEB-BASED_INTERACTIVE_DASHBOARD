@@ -152,9 +152,13 @@ export class LoginComponent{
         
         localStorage.setItem('Joao', 'Password1');
         localStorage.setItem('user', 'password');
+        localStorage.setItem('adriano', '123');
 
         if (localStorage.getItem(this.user) != this.password)
             alert("Nome de utilizador ou password incorretos!");
-        else this.router.navigate(['home']);
+        else {
+            localStorage.setItem('username',this.user);
+            this.router.navigate(['home']);
+        }
     }
 }

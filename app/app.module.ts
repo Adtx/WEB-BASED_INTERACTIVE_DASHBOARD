@@ -26,7 +26,6 @@ import { RadarChartComponent } from './home/grid/RadarChart/radarChart.component
 import { ChartsModule } from 'ng2-charts';
 import {ChartDataService} from './services/chart.data.service';
 import {BackendService} from './services/backend.service';
-import {SharedService} from './services/shared.service';
 
 import {FormsModule} from '@angular/forms';
 
@@ -53,7 +52,7 @@ import { MODULE_ROUTES } from './app.routes';
                     BarChartComponent, LineChartComponent, DoughnutChartComponent, PieChartComponent,
                     PolarAreaChartComponent, RadarChartComponent
                   ],
-    providers: [ChartDataService, BackendService, SharedService],
+    providers: [ChartDataService, BackendService],
     entryComponents: [TwitterComponent, ClockComponent, BarChartComponent, LineChartComponent, DoughnutChartComponent,
                       PieChartComponent, PolarAreaChartComponent, RadarChartComponent
                      ],

@@ -20,11 +20,10 @@ export class BackendService {
     constructor(private http:Http) { }
 
     
-    saveUserSession(boxes: any[]): Observable<any> {
-
+    saveUserSession(boxes: any[], username: string): Observable<any> {
         let widgets: string = '[';
-		let type: string;
-		let widget: {};
+        let type: string;
+        let widget: {};
 
         for(let box of boxes){
             if(box.widgetType === LineChartComponent) type='linechart';
@@ -35,18 +34,18 @@ export class BackendService {
             else if(box.widgetType === RadarChartComponent) type='radarchart';
             else if(box.widgetType === TwitterComponent) type='twitter';
             else if(box.widgetType === ClockComponent) type='clock';
-			widget = { id: box.id, config: box.config, widgetType: type};
+            widget = { id: box.id, config: box.config, widgetType: type};
             widgets = widgets.concat(JSON.stringify(widget)).concat(',');
         }
-		widgets = widgets.slice(0,-1).concat(']');
+        widgets = widgets.slice(0,-1).concat(']');
 
         let data = {
-            UserId:"adri",
+            UserId: username,
             DashBoardId:"dash0",
             DashboardValue: widgets
         }
 
-	    let headers = new Headers({ 'Content-Type': 'application/json' });
+        let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return this.http.post('http://pcogdashboard.azurewebsites.net/api/DashboardSave', JSON.stringify(data), options)
                    .map(this.extractData)

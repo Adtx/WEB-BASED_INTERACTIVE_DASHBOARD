@@ -11,7 +11,6 @@ import { RadarChartComponent } from './grid/RadarChart/radarChart.component';
 import { TwitterComponent } from './grid/twitter/twitter.component';
 import { ClockComponent } from './grid/clock/clock.component';
 import {BackendService} from '../services/backend.service';
-import {SharedService} from '../services/shared.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -23,8 +22,7 @@ import { Observable } from 'rxjs';
         <div class="sidebar-background" style="background-image: url(/assets/img/sidebar-4.jpg)"></div>
     </div>
 
-<navbar-cmp  class="navbar-cmp-fixed">
-</navbar-cmp>
+    <navbar-cmp (save)="saveSession()" class="navbar-cmp-fixed"></navbar-cmp>
 
 
     <div class="main-panel">
@@ -41,6 +39,7 @@ import { Observable } from 'rxjs';
 
 export class HomeComponent{
     location: Location;
+    username: string = 'USER';
     @ViewChild('grid') grid;
 
     private static stringTypeMap: {[string:string]: Type<Component>} = {
@@ -54,22 +53,15 @@ export class HomeComponent{
         'twitter': TwitterComponent
     };
 
-    constructor(private http: Http, location:Location, private service: BackendService, public sharedService: SharedService) {
+    constructor(private http: Http, location:Location, private service: BackendService) {
         this.location = location;
-        this.sharedService.subject.subscribe(value => {
-
-            this.service.saveUserSession(this.grid.boxes)
-                        .subscribe( res => {},
-                                    error => console.log(error));
-
-            console.log('SESSION SAVED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-        });
+        this.username = localStorage.getItem('username');
     }
 
     ngOnInit(){ // Obter do back-end a configuração do utilizador
         //$.getScript('../assets/js/light-bootstrap-dashboard.js');
 
-          this.http.get('http://pcogdashboard.azurewebsites.net/api/DashboardsFetch/adri/dash0')
+          this.http.get(`http://pcogdashboard.azurewebsites.net/api/DashboardsFetch/${this.username}/dash0`)
             .map((response: Response) => <any[]>response.json())
             .subscribe(array => {
                 for(let widget of array){
@@ -80,16 +72,14 @@ export class HomeComponent{
     }
 
 
-    /*private saveSession(): void {
+    private saveSession(): void {
 
-
-       console.log('SESSION SAVED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-       
-       this.service.saveUserSession(this.grid.boxes)
+       this.service.saveUserSession(this.grid.boxes, this.username)
 				.subscribe( res => {},
 							error => console.log(error));
-        
-    }*/
+
+        //console.log('SESSION SAVED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');    
+    }
     
     private addWidget(widgetType: Component): void {
         this.grid.addBox(widgetType);

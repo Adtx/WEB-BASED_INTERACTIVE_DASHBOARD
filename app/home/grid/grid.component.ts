@@ -77,6 +77,11 @@ export class GridComponent{
 		this.boxes[index].config.row = event.row;
 	}
 
+	updateItemSize(index: number, event: NgGridItemEvent): void {
+		this.boxes[index].config.sizex = event.sizex;
+		this.boxes[index].config.sizey = event.sizey;
+	}
+
 	onResize(index: number, event: NgGridItemEvent): void {
 		// Do something here
 	}

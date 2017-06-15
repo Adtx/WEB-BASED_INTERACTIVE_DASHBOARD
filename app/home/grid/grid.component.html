@@ -2,7 +2,7 @@
 <div class="main-content">
     <div [ngGrid]="gridConfig">
 
-        <div *ngFor="let box of boxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event)"
+        <div *ngFor="let box of boxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResizeStop)="updateItemSize(i, $event)"
             (onDragStop)="updateItemPosition(i, $event)" style="position:relative">
             <div class="handle" style="background-color: gray; margin-bottom:0px;"><span style="font-size:30px; margin-left: 5px;"><!--Widget {{box.id}}--></span>
                 <div class="box-header-btns pull-right">
