@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, OnDestroy, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import {ChartDataService} from '../../../services/chart.data.service';
  
 @Component({
@@ -6,7 +6,7 @@ import {ChartDataService} from '../../../services/chart.data.service';
     selector: 'radarChart-cmp',
     templateUrl: 'radarChart.component.html'
 })
-export class RadarChartComponent {
+export class RadarChartComponent implements OnDestroy, OnInit{
   // Radar
   public radarChartLabels:string[] = ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'];
  
@@ -17,27 +17,39 @@ export class RadarChartComponent {
   public radarChartType:string = 'radar';
   private closeConfigWindow:boolean = false;
   private service: ChartDataService;
-  private serviceURL: string;
-  private title: string;
+  @Input() title: string;
+  @Input() widgetID: number;
+  @Input() serviceURL: string;
+  @Output() update = new EventEmitter();
 
 
   public constructor(){this.service = new ChartDataService();}
 
+  ngOnInit() {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    if(this.serviceURL) this.connectToService(this.serviceURL); 
+  }
 
   private connectToService(serviceURL: string){
 
     this.closeConfigWindow = true;
+    if(serviceURL != undefined && serviceURL != ""){
+      this.service.connect(serviceURL);
 
-    this.service.connect(serviceURL);
+      this.service.getObservableData().subscribe(newValue => {
+      // for(let i=0; i<this.lineChartData.length;i++)
 
-    this.service.getObservableData().subscribe(newValue => {
-     // for(let i=0; i<this.lineChartData.length;i++)
+          this.radarChartData[0].data.push(parseInt(newValue));
+          this.radarChartData[0].data.shift();
+          this.radarChartData = this.radarChartData.slice(0);
+      });
+      this.serviceURL = serviceURL;
+    }
+  }
 
-        this.radarChartData[0].data.push(parseInt(newValue));
-        this.radarChartData[0].data.shift();
-        this.radarChartData = this.radarChartData.slice(0);
-    });
-    this.serviceURL = serviceURL;
+  private updateConfig(serviceURL: string) {
+    this.connectToService(serviceURL);
+    this.update.emit({id: this.widgetID, title: this.title, url: serviceURL});
   }
 
   ngOnDestroy() {

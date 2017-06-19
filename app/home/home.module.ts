@@ -13,7 +13,6 @@ import { NavbarModule} from './navbar/navbar.module';
 import { NgGridModule } from 'angular2-grid';
 
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { WidgetContainerComponent } from './grid/widgetContainer/widgetContainer.component';
 //import { ChartComponent } from './grid/chart/chart.component';
 import { TwitterComponent } from './grid/twitter/twitter.component';
 import { ClockComponent } from './grid/clock/clock.component';
@@ -41,7 +40,7 @@ import { MODULE_ROUTES } from '../app.routes';
         ChartsModule,
         //RouterModule.forChild(MODULE_ROUTES)
     ],
-    declarations: [ HomeComponent, GridComponent, TwitterComponent, ClockComponent, WidgetContainerComponent,
+    declarations: [ HomeComponent, GridComponent, TwitterComponent, ClockComponent,
                     BarChartComponent, LineChartComponent, DoughnutChartComponent, PieChartComponent,
                     PolarAreaChartComponent, RadarChartComponent
                   ],

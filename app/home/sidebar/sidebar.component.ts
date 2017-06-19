@@ -15,7 +15,7 @@ export class SidebarComponent implements OnInit {
     public displayChartTypes: boolean = false;
     public subMenuItems: any[];
     isCollapsed = true;
-    @Output() newWidget = new EventEmitter<Type<Component>>();
+    @Output() newWidget = new EventEmitter<string>();
 
     constructor() {}
 
@@ -36,7 +36,7 @@ export class SidebarComponent implements OnInit {
         };
     }
 
-    private triggerEvent(widgetType: Type<Component>) : void {
+    private triggerEvent(widgetType: string) : void {
         this.newWidget.emit(widgetType);
     }
 }

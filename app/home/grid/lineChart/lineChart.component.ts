@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, OnDestroy, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import {ChartDataService} from '../../../services/chart.data.service';
 
 @Component({
@@ -6,7 +6,7 @@ import {ChartDataService} from '../../../services/chart.data.service';
   selector: 'lineChart-cmp',
   templateUrl: 'lineChart.component.html',
 })
-export class LineChartComponent {
+export class LineChartComponent implements OnDestroy, OnInit{
   // lineChart
   public lineChartData:Array<number[]> = [[]];
   public lineChartLabels:Array<any> = ['1','2','3','4','5','6','7','8','9','10'];
@@ -45,31 +45,43 @@ export class LineChartComponent {
 
   private closeConfigWindow:boolean = false;
   private service: ChartDataService;
-  private serviceURL: string;
-  private title: string;
+  @Input() title: string;
+  @Input() widgetID: number;
+  @Input() serviceURL: string;
+  @Output() update = new EventEmitter();
 
 
   public constructor(){this.service = new ChartDataService();}
 
+  ngOnInit() {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    if(this.serviceURL) this.connectToService(this.serviceURL); 
+  }
 
   private connectToService(serviceURL: string){
 
     this.closeConfigWindow = true;
+    if(serviceURL != undefined && serviceURL != ""){
+      this.service.connect(serviceURL);
 
-    this.service.connect(serviceURL);
+      this.service.getObservableData().subscribe(newValue => {
+      // for(let i=0; i<this.lineChartData.length;i++)
+      
+          this.lineChartData[0].push(newValue);
+          this.lineChartLabels = this.lineChartLabels.map((label) => {return label;}); // Sem esta linha a view so atualiza quando entra no if
 
-    this.service.getObservableData().subscribe(newValue => {
-     // for(let i=0; i<this.lineChartData.length;i++)
-     
-        this.lineChartData[0].push(newValue);
-        this.lineChartLabels = this.lineChartLabels.map((label) => {return label;}); // Sem esta linha a view so atualiza quando entra no if
+          if(this.lineChartData[0].length > this.lineChartLabels.length){ // Se o numero atual de pontos ja nao cabe no grafico, faz scroll
+            this.lineChartData[0].shift();
+            this.lineChartLabels = this.lineChartLabels.map((label) => {return (parseInt(label)+1).toString();});
+          }
+      });
+      this.serviceURL = serviceURL;
+    }
+  }
 
-        if(this.lineChartData[0].length > this.lineChartLabels.length){ // Se o numero atual de pontos ja nao cabe no grafico, faz scroll
-          this.lineChartData[0].shift();
-          this.lineChartLabels = this.lineChartLabels.map((label) => {return (parseInt(label)+1).toString();});
-        }
-    });
-    this.serviceURL = serviceURL;
+  private updateConfig(serviceURL: string) {
+    this.connectToService(serviceURL);
+    this.update.emit({id: this.widgetID, title: this.title, url: serviceURL});
   }
 
   ngOnDestroy() {

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component, OnDestroy, Input, Output, OnInit, EventEmitter } from '@angular/core';
 
 @Component({
     moduleId: module.id,
@@ -7,5 +7,14 @@ import {Component} from '@angular/core';
 })
 
 export class TwitterComponent {
-    private title: string = 'Twitter';
+  private closeConfigWindow:boolean = false;
+  @Input() title: string;
+  @Input() widgetID: number;
+  @Output() update = new EventEmitter();
+
+
+  private updateConfig(serviceURL: string) {
+    this.update.emit({id: this.widgetID, title: this.title, url: undefined});
+  }
+
 }

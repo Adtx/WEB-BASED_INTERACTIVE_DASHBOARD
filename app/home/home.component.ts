@@ -2,14 +2,6 @@ import { Component, OnInit, ViewChild, Type} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { BarChartComponent } from './grid/barChart/barChart.component';
-import { LineChartComponent } from './grid/LineChart/lineChart.component';
-import { DoughnutChartComponent } from './grid/DoughnutChart/doughnutChart.component';
-import { PieChartComponent } from './grid/PieChart/pieChart.component';
-import { PolarAreaChartComponent } from './grid/PolarAreaChart/polarAreaChart.component';
-import { RadarChartComponent } from './grid/RadarChart/radarChart.component';
-import { TwitterComponent } from './grid/twitter/twitter.component';
-import { ClockComponent } from './grid/clock/clock.component';
 import {BackendService} from '../services/backend.service';
 import { Observable } from 'rxjs';
 
@@ -42,18 +34,7 @@ export class HomeComponent{
     username: string = 'USER';
     @ViewChild('grid') grid;
 
-    private static stringTypeMap: {[string:string]: Type<Component>} = {
-        'linechart': LineChartComponent,
-        'barchart': BarChartComponent,
-        'doughnutchart': DoughnutChartComponent,
-        'piechart': PieChartComponent,
-        'polarareachart': PolarAreaChartComponent,
-        'radarchart': RadarChartComponent,
-        'clock': ClockComponent,
-        'twitter': TwitterComponent
-    };
-
-    constructor(private http: Http, location:Location, private service: BackendService) {
+    constructor(private http: Http, location:Location, private service: BackendService, private router: Router) {
         this.location = location;
         this.username = localStorage.getItem('username');
     }
@@ -65,7 +46,6 @@ export class HomeComponent{
             .map((response: Response) => <any[]>response.json())
             .subscribe(array => {
                 for(let widget of array){
-                    widget.widgetType = HomeComponent.stringTypeMap[widget.widgetType];
                     this.grid.boxes.push(widget);
                 }
             });
@@ -78,7 +58,9 @@ export class HomeComponent{
 				.subscribe( res => {},
 							error => console.log(error));
 
-        //console.log('SESSION SAVED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');    
+        //console.log('SESSION SAVED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+
+        this.router.navigate(['login']);
     }
     
     private addWidget(widgetType: Component): void {

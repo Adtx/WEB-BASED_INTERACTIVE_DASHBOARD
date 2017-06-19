@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { Observable } from "rxjs/Observable";
 
 
@@ -12,6 +12,10 @@ export class ClockComponent implements OnInit {
     
         time: string;
         day: string;
+        private closeConfigWindow:boolean = false;
+        @Input() title: string;
+        @Input() widgetID: number;
+        @Output() update = new EventEmitter();
         
         ngOnInit(): void {
             this.startTime();
@@ -49,5 +53,7 @@ export class ClockComponent implements OnInit {
             return '' + i;
         }
 
-    private title: string = 'Clock';
+        private updateConfig(serviceURL: string) {
+            this.update.emit({id: this.widgetID, title: this.title, url: undefined});
+        }
 }

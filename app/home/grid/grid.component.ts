@@ -7,6 +7,8 @@ import {BackendService} from '../../services/backend.service';
 
 interface Box {
     id: number;
+	title: any,
+	url: any,
     config: any;
 	widgetType: Component;
 }
@@ -23,7 +25,7 @@ interface Box {
 export class GridComponent{
     public boxes: Array<Box> = [];
 	private rgb: string = '#efefef';
-	private curNum = 1;
+	private curNum = 0;
 	private gridConfig: NgGridConfig = <NgGridConfig>{
 		'margins': [5],
 		'draggable': true,
@@ -55,21 +57,34 @@ export class GridComponent{
 
 
 
-	addBox(type: Type<Component>): void {
+	addBox(type: string): void {
 		const conf: NgGridItemConfig = this._generateDefaultItemConfig();
 		conf.payload = this.curNum++;
-		this.boxes.push({ 'id': conf.payload, 'config': conf, 'widgetType': type});
+		this.boxes.push({ 'id': conf.payload, 'title': undefined, 'url': undefined, 'config': conf, 'widgetType': type});
 	}
 
 	removeWidget(index: number): void {
 		if (this.boxes[index]) {
 			this.boxes.splice(index, 1);
-			this.curNum--;
+			if(this.curNum > 0) this.curNum--;
 		}
 	}
 
 	updateItem(index: number, event: NgGridItemEvent): void {
 		// Do something here
+	}
+
+	updateWidgetConfig(data: any): void {
+
+		console.log('DADOS DE CONFIGURACAO RECEBIDOS:');
+		console.log(data);
+
+		this.boxes[data.id].title = data.title;
+		this.boxes[data.id].url = data.url;
+
+		console.log('ID DA WIDGET: ' + data.id);
+		console.log('WIDGET CONFIG:');
+		console.log(JSON.stringify(this.boxes[data.id]));
 	}
 
 	updateItemPosition(index: number, event: NgGridItemEvent): void {
