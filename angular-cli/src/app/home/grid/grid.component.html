@@ -1,0 +1,24 @@
+<!--<router-outlet></router-outlet>-->
+<div class="main-content">
+    <div [ngGrid]="gridConfig">
+
+        <div *ngFor="let box of boxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResizeStop)="updateItemSize(i, $event)"
+            (onDragStop)="updateItemPosition(i, $event)" style="position:relative">
+            <div class="handle" style="background-color: gray; margin-bottom:0px;"><span style="font-size:30px; margin-left: 5px;"><!--Widget {{box.id}}--></span>
+                <div class="box-header-btns pull-right">
+                    <a title="Remove widget" (click)="removeWidget(i);">
+                        <i class="pe-7s-close-circle" style="font-size:30px; margin-right:5px; margin-top:5px; "></i>
+                    </a>
+                </div>
+            </div>
+            <lineChart-cmp *ngIf="box.widgetType == 'LineChartComponent'" [widgetID]="box.id" [title]="box.title" [serviceURL]="box.url" (update)="updateWidgetConfig($event)"> </lineChart-cmp>
+            <barChart-cmp *ngIf="box.widgetType == 'BarChartComponent'" [widgetID]="box.id" [title]="box.title" [serviceURL]="box.url" (update)="updateWidgetConfig($event)"> </barChart-cmp>
+            <radarChart-cmp *ngIf="box.widgetType == 'RadarChartComponent'" [widgetID]="box.id" [title]="box.title" [serviceURL]="box.url" (update)="updateWidgetConfig($event)"> </radarChart-cmp>
+            <pieChart-cmp *ngIf="box.widgetType == 'PieChartComponent'" [widgetID]="box.id" [title]="box.title" [serviceURL]="box.url" (update)="updateWidgetConfig($event)"> </pieChart-cmp>
+            <polarAreaChart-cmp *ngIf="box.widgetType == 'PolarAreaChartComponent'" [widgetID]="box.id" [title]="box.title" [serviceURL]="box.url" (update)="updateWidgetConfig($event)"> </polarAreaChart-cmp>
+            <doughnutChart-cmp *ngIf="box.widgetType == 'DoughnutChartComponent'" [widgetID]="box.id" [title]="box.title" [serviceURL]="box.url" (update)="updateWidgetConfig($event)"> </doughnutChart-cmp>
+            <twitter-cmp *ngIf="box.widgetType == 'TwitterComponent'" [widgetID]="box.id" [title]="box.title" (update)="updateWidgetConfig($event)"> </twitter-cmp>
+            <clock-cmp *ngIf="box.widgetType == 'ClockComponent'" [widgetID]="box.id" [title]="box.title" (update)="updateWidgetConfig($event)"> </clock-cmp>
+        </div>
+    </div>
+</div>

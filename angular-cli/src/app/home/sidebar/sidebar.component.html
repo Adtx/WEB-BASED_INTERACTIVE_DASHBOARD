@@ -1,0 +1,51 @@
+<div class="sidebar-wrapper">
+    <div class="logo">
+        <a class="simple-text">
+            <div class="logo-img">
+                <img src="/assets/img/angular2-logo-white.png" />
+            </div>
+        </a>
+    </div>
+    <ul class="nav">
+        <li>
+            <a (click)="displayChartTypes = !displayChartTypes">
+                <i class="pe-7s-graph3"></i>
+                <p>Gráfico</p>
+            </a>
+            <div *ngIf="displayChartTypes">
+                <ul class="nav">
+                    <li *ngFor="let subitem of subMenuItems" (click)="triggerEvent(subitem.widgetType)">
+                        <a>
+                            <i class="{{subitem.icon}}" style="font-size:20px;"></i>
+                            <p>{{subitem.title}}</p>
+                        </a>
+                    </li>
+                </ul>
+                <hr>
+            </div>
+        </li>
+        <li *ngFor="let item of menuItems" (click)="triggerEvent(item.widgetType)">
+            <a>
+                <i class="{{item.icon}}"></i>
+                <p>{{item.title}}</p>
+            </a>
+        </li>
+        <li>
+            <a href="home">
+                <i class="pe-7s-bell"></i>
+                <p>Notificações</p>
+            </a>
+        </li>
+    </ul>
+
+    <!--
+    <ul class="nav">
+        <li *ngFor="let routerItem of routerItems" routerLinkActive="active" class="{{routerItem.class}}">
+            <a  [routerLink]="[routerItem.path]">
+                <i class="{{routerItem.icon}}"></i>
+                <p>{{routerItem.title}}</p>
+            </a>
+        </li>
+    </ul>
+    -->
+</div>
